@@ -42,7 +42,14 @@ class Tests(unittest.TestCase):
 
     def test_to_dict(self):
         """Test to_dict method."""
-        self.assertIsInstance(test.to_dict(), dict)
+        test_dict = test.to_dict()
+        self.assertIsInstance(test_dict, dict)
+        self.assertEqual(test_dict, {
+            '__class__': 'BaseModel',
+            'created_at': test.created_at,
+            'id': test.id,
+            'updated_at': test.updated_at
+        })
 
     def test__str__(self):
         """Test __str__ special method."""
