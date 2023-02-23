@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""File for testing the base model class."""
+"""File for testing the BaseModel class."""
 
 import unittest
 from models.base_model import BaseModel
