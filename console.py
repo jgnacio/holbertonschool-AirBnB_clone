@@ -2,7 +2,11 @@
 """interpreter"""
 
 
-def do_create(self, base_name):
+import json
+
+def do_create(self, arg):
     """new instance of base model"""
-    if base_name
-    
+    if len(arg) == 0:
+        print("** class name missing **")
+    else:
+        
