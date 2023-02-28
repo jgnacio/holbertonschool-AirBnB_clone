@@ -19,7 +19,7 @@ Created on Mon Feb 27 10:34:00 2023.
         (method) - do_create():
             create command to make a new obj.
 
-        (method) - default():
+        (method) - emptyline():
             if the read line is empty execute
             this method, that do nothing.
 """
@@ -30,17 +30,17 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """Command class for interactive to objs."""
 
-    cmd.Cmd.prompt = "(hbnb) "
+    prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
 
     def do_EOF(self, arg):
-        """EOF command to exit the program."""
+        """EOF command to exit the program whit Ctrl + d."""
         return True
 
-    def default(self, arg):
+    def emptyline(self):
         """Command for empty line."""
         pass
 
