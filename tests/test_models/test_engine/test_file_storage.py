@@ -49,8 +49,6 @@ class TestFileStorage(unittest.TestCase):
     def test_new(self):
         """Test creating a new model obj with new method."""
         file_storage.new(new_bm)
-        new_bm.save()
-        BaseModel.save(self)
         self.assertEqual(file_storage.all(), {
             f"{new_bm.__class__.__name__}.{new_bm.id}": new_bm
         })
@@ -71,6 +69,8 @@ class TestFileStorage(unittest.TestCase):
         """Test save method to save the objects on json file."""
         del_old_files()
         file_storage.save()
+        new_bm.save()
+        BaseModel.save(self)
 
         with open("recover_objs.json", encoding="UTF-8"):
             pass
