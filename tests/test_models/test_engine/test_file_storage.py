@@ -50,6 +50,7 @@ class TestFileStorage(unittest.TestCase):
         """Test creating a new model obj with new method."""
         file_storage.new(new_bm)
         new_bm.save()
+        BaseModel.save(self)
         self.assertEqual(file_storage.all(), {
             f"{new_bm.__class__.__name__}.{new_bm.id}": new_bm
         })
