@@ -6,9 +6,18 @@ import os
 import json
 import unittest
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 # Global variables
+file_storage = FileStorage()
 test = BaseModel()
+
+
+def del_old_files():
+    try:
+        os.remove("recover_objs.json")
+    except FileNotFoundError:
+        pass
 
 
 class Tests(unittest.TestCase):
@@ -40,9 +49,14 @@ class Tests(unittest.TestCase):
         """Test saving the model."""
         with open("recover_objs.json", "w", encoding="UTF-8") as json_file:
             json.dump({}, json_file)
-        old_update = test.updated_at
+        update_time = test.updated_at
+        file_storage.save()
         test.save()
-        self.assertNotEqual(old_update, test.updated_at)
+        BaseModel.save(self)
+        self.assertTrue(update_time < test.updated_at)
+        with open("recover_objs.json", encoding="UTF-8"):
+            pass
+        del_old_files()
 
     def test_to_dict(self):
         """Test to_dict method."""
@@ -60,7 +74,4 @@ class Tests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    try:
-        os.remove("recover_objs.json")
-    except FileNotFoundError:
-        pass
+    del_old_files()

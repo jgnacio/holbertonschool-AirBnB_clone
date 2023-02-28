@@ -68,7 +68,6 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test save method to save the objects on json file."""
         update_time = new_bm.updated_at
-        del_old_files()
         file_storage.save()
         new_bm.save()
         BaseModel.save(self)
