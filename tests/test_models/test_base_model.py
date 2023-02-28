@@ -40,9 +40,9 @@ class Tests(unittest.TestCase):
         """Test saving the model."""
         with open("recover_objs.json", "w", encoding="UTF-8") as json_file:
             json.dump({}, json_file)
+        old_update = test.updated_at
         test.save()
-        with open("recover_objs.json", encoding="UTF-8"):
-            pass
+        self.assertNotEqual(old_update, test.updated_at)
 
     def test_to_dict(self):
         """Test to_dict method."""

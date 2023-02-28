@@ -32,7 +32,7 @@ class TestFileStorage(unittest.TestCase):
         with open("recover_objs.json", "w", encoding="UTF-8 ") as json_file:
             json.dump({}, json_file)
         file_storage.reload()
-        self.assertEqual(file_storage.all(),{})
+        self.assertEqual(file_storage.all(), {})
         file_storage.new(new_bm)
         self.assertEqual(file_storage.all(), {
             f"{new_bm.__class__.__name__}.{new_bm.id}": new_bm
@@ -67,11 +67,12 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """Test save method to save the objects on json file."""
+        update_time = new_bm.updated_at
         del_old_files()
         file_storage.save()
         new_bm.save()
         BaseModel.save(self)
-
+        self.assertTrue(update_time < new_bm.updated_at)
         with open("recover_objs.json", encoding="UTF-8"):
             pass
         del_old_files()
