@@ -3,6 +3,7 @@
 """File for testing the BaseModel class."""
 
 import unittest
+import os
 from models.base_model import BaseModel
 
 # Global variables
@@ -63,3 +64,7 @@ class Tests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    try:
+        os.remove("recover_objs.json")
+    except FileNotFoundError:
+        pass
