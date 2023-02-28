@@ -13,7 +13,7 @@ Created on Mon Feb 27 10:34:00 2023.
 
         (method) - do_quit():
             Quit command to exit the program.
-        
+
         (method) - do_EOF():
             EOF command to exit the program.
 

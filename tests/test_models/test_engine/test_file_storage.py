@@ -18,7 +18,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(file_storage.all(), {})
         new_bm = BaseModel()
         self.assertEqual(file_storage.all(), {
-            f"{new_bm.__class__.__name__}.{new_bm.id}" : new_bm
+            f"{new_bm.__class__.__name__}.{new_bm.id}": new_bm
         })
 
     def test_new(self):
@@ -26,9 +26,9 @@ class TestFileStorage(unittest.TestCase):
         new_bm = BaseModel()
         file_storage.new(new_bm)
         self.assertNotEqual(file_storage.all(), {
-            f"{new_bm.__class__.__name__}.{new_bm.id}" : new_bm
+            f"{new_bm.__class__.__name__}.{new_bm.id}": new_bm
         })
-        
+
 
 if __name__ == '__main__':
     unittest.main()

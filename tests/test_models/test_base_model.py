@@ -60,5 +60,6 @@ class Tests(unittest.TestCase):
         new_model = BaseModel(**test_new_model)
         self.assertIsInstance(new_model, BaseModel)
 
+
 if __name__ == '__main__':
     unittest.main()
