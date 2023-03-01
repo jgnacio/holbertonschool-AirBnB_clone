@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self , args):
         """print string representation"""
-        argv = args.split()
+        tokens  = args.split()
         if len(argv) == 0:
             print("** class name missing **")
         elif (argv[0] not in storage.class_list()):
@@ -66,8 +66,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
-            m = args[0] + "." + args[1]
-            dic = storage.all()
+            key = str(tokens[0]) + '.' + str(tokens[1])
+        objects = storage.all()
             try:
                 print(dic[m])
             except Exception:
