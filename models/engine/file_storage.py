@@ -32,6 +32,13 @@ Created on Thu Feb 23 10:33:00 2023.
 """
 
 import json
+from models.user import User
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -43,6 +50,9 @@ class FileStorage:
     def all(self):
         """Return all objects in the current program."""
         return FileStorage.__objects
+
+    def class_list(self):
+        return [User, City, Place, State, Review, Amenity, BaseModel]
 
     def new(self, obj):
         """Add/update entries."""
@@ -61,14 +71,24 @@ class FileStorage:
 
     def reload(self):
         """Reload the model from the path."""
-        from models.base_model import BaseModel
+
+        classes = {"BaseModel": BaseModel, "User": User,
+                    "Amenity": Amenity, "City": City,
+                    "Place": Place, "Review": Review,
+                    "State": State}
 
         try:
-            with open(FileStorage.__file_path, encoding="UTF-8") as json_file:
-                loaded = json.load(json_file)
-            for key, value in loaded.items():
-                loaded[key] = BaseModel(**value)
+            with open(
+                FileStorage.__file_path, 'r', encoding='utf-8'
+            ) as json_file:
+                loaded = json.load(f)
 
+            for key, value in loaded.items():
+                cls_name = value.get('__class__')
+                if cls_name in classes.keys():
+                    my_cls = classes.get(cls_name)
+                    loaded[key] = my_cls(**value)
             FileStorage.__objects = loaded
+
         except FileNotFoundError:
             pass
