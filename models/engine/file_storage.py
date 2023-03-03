@@ -51,6 +51,9 @@ class FileStorage:
         """Return all objects in the current program."""
         return FileStorage.__objects
 
+    def class_list(self):
+        return [User, City, Place, State, Review, Amenity, BaseModel]
+
     def new(self, obj):
         """Add/update entries."""
         FileStorage.__objects[
@@ -81,7 +84,7 @@ class FileStorage:
 
             for key, value in loaded.items():
                 cls_name = value.get('__class__')
-                if cls_name in classes.keys():
+                if cls_name in classes:
                     my_cls = classes.get(cls_name)
                     loaded[key] = my_cls(**value)
             FileStorage.__objects = loaded
