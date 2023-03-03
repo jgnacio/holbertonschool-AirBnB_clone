@@ -28,7 +28,6 @@ Created on Wed Feb 22 11:55:00 2023.
 
 import uuid
 from datetime import datetime
-from . import storage
 
 
 class BaseModel:
@@ -36,6 +35,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initialize the model."""
+        from . import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -57,6 +57,7 @@ class BaseModel:
 
     def save(self):
         """Update date of the model."""
+        from . import storage
         self.updated_at = datetime.now()
         storage.save()
 

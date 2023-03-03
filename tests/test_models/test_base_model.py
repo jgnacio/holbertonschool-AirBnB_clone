@@ -2,12 +2,22 @@
 # -*- coding: utf-8 -*-
 """File for testing the BaseModel class."""
 
-import unittest
 import os
+import json
+import unittest
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 # Global variables
+file_storage = FileStorage()
 test = BaseModel()
+
+
+def del_old_files():
+    try:
+        os.remove("recover_objs.json")
+    except FileNotFoundError:
+        pass
 
 
 class Tests(unittest.TestCase):
@@ -37,20 +47,20 @@ class Tests(unittest.TestCase):
 
     def test_save(self):
         """Test saving the model."""
-        old_update = test.updated_at
+        with open("recover_objs.json", "w", encoding="UTF-8") as json_file:
+            json.dump({}, json_file)
+        update_time = test.updated_at
+        file_storage.save()
         test.save()
-        self.assertNotEqual(old_update, test.updated_at)
+        BaseModel.save(self)
+        self.assertTrue(update_time < test.updated_at)
+        with open("recover_objs.json", encoding="UTF-8"):
+            pass
+        del_old_files()
 
     def test_to_dict(self):
         """Test to_dict method."""
         test_dict = test.to_dict()
-        # self.assertIsInstance(test_dict, dict)
-        # self.assertEqual(test_dict, {
-        #     '__class__': 'BaseModel',
-        #     'created_at': test.created_at,
-        #     'id': test.id,
-        #     'updated_at': test.updated_at
-        # })
 
     def test__str__(self):
         """Test __str__ special method."""
@@ -64,7 +74,4 @@ class Tests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    try:
-        os.remove("recover_objs.json")
-    except FileNotFoundError:
-        pass
+    del_old_files()
