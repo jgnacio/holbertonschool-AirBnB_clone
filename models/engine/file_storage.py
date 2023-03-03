@@ -51,9 +51,6 @@ class FileStorage:
         """Return all objects in the current program."""
         return FileStorage.__objects
 
-    def class_list(self):
-        return [User, City, Place, State, Review, Amenity, BaseModel]
-
     def new(self, obj):
         """Add/update entries."""
         FileStorage.__objects[

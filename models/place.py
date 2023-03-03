@@ -12,6 +12,7 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """Place class."""
+
     name = ''
     description = ''
     number_rooms = 0
