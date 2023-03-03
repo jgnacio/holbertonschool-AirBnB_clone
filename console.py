@@ -179,20 +179,24 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print(error_logs["CLASS_NAME_MISSING"])
         if len(arg.split()) > 0:
+            if arg.split()[0] not in classes:
+                print(error_logs["CLASS_NOT_FOUND"])
+                return
             if len(arg.split()) > 1:
                 try:
                     storage.all()[f"{arg.split()[0]}.{arg.split()[1]}"]
                 except KeyError:
                     print(error_logs["INSTANCE_NOT_FOUND"])
                     return
-            if arg.split()[0] not in classes:
-                print(error_logs["CLASS_NOT_FOUND"])
-            elif len(arg.split()) < 2:
+            if len(arg.split()) < 2:
                 print(error_logs["INSTANCE_ID_MISSING"])
-            elif len(arg.split()) < 3:
+                return
+            if len(arg.split()) < 3:
                 print(error_logs["ATTRIBUTE_NAME_MISSING"])
-            elif len(arg.split()) < 4:
+                return
+            if len(arg.split()) < 4:
                 print(error_logs["VALUE_MISSING"])
+                return
             else:
                 try:
                     storage.all()[
