@@ -1,15 +1,20 @@
-
 #!/usr/bin/python3
 """
-    State Class.
+Created on Mon Feb 28 23:08:00 2023.
+
+@authors: jgnacio
+@description:
+    Class for State model.
 """
 
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """State class"""
+    """State class."""
+
     name = ''
 
     def __init__(self, *args, **kwargs):
+        """Initialize a new State."""
         BaseModel.__init__(self, *args, **kwargs)

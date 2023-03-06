@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-"""user module"""
+"""
+Created on Mon Feb 28 23:08:00 2023.
+
+@authors: jgnacio
+@description:
+    Class for User model.
+"""
 
 
 from models.base_model import BaseModel
@@ -14,4 +20,5 @@ class User(BaseModel):
     password = ""
 
     def __init__(self, *args, **kwargs):
+        """Initialize a new User."""
         BaseModel.__init__(self, *args, **kwargs)

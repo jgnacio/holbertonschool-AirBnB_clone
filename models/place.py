@@ -1,13 +1,18 @@
 #!/usr/bin/python3
 """
-    Place Class.
+Created on Mon Feb 28 23:08:00 2023.
+
+@authors: jgnacio
+@description:
+    Class for Place model.
 """
 
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Place class"""
+    """Place class."""
+
     name = ''
     description = ''
     number_rooms = 0
@@ -21,4 +26,5 @@ class Place(BaseModel):
     amenity_ids = []
 
     def __init__(self, *args, **kwargs):
+        """Initialize a new Place."""
         BaseModel.__init__(self, *args, **kwargs)

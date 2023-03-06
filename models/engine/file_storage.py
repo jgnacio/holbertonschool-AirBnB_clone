@@ -3,7 +3,7 @@
 """
 Created on Thu Feb 23 10:33:00 2023.
 
-@authors: jgnacio & Mauro Trenche
+@authors: jgnacio
 @description:
     This module provides a simple implementation of json objects
     serialization and deserialization functions to get the application
@@ -51,9 +51,6 @@ class FileStorage:
         """Return all objects in the current program."""
         return FileStorage.__objects
 
-    def class_list(self):
-        return [User, City, Place, State, Review, Amenity, BaseModel]
-
     def new(self, obj):
         """Add/update entries."""
         FileStorage.__objects[
@@ -71,21 +68,20 @@ class FileStorage:
 
     def reload(self):
         """Reload the model from the path."""
-
         classes = {"BaseModel": BaseModel, "User": User,
-                    "Amenity": Amenity, "City": City,
-                    "Place": Place, "Review": Review,
-                    "State": State}
+                   "Amenity": Amenity, "City": City,
+                   "Place": Place, "Review": Review,
+                   "State": State}
 
         try:
             with open(
                 FileStorage.__file_path, 'r', encoding='utf-8'
             ) as json_file:
-                loaded = json.load(f)
+                loaded = json.load(json_file)
 
             for key, value in loaded.items():
                 cls_name = value.get('__class__')
-                if cls_name in classes.keys():
+                if cls_name in classes:
                     my_cls = classes.get(cls_name)
                     loaded[key] = my_cls(**value)
             FileStorage.__objects = loaded
