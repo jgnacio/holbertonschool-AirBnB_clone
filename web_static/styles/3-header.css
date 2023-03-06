@@ -1,0 +1,15 @@
+header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid #CCCCCC
+}
+
+.Logo {
+    width: 142px;
+    height: 60px;
+    background-size: cover;
+    margin-left: 20px;
+    background-image: url("../images/logo.png");
+}
