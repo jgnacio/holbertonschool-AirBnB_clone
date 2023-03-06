@@ -1,0 +1,14 @@
+body {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    min-width: 70vw;
+    max-width: 1000px;
+    margin: 30px 0 30px;
+}
