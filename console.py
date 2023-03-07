@@ -203,6 +203,7 @@ class HBNBCommand(cmd.Cmd):
                         f"{arg.split()[0]}.{arg.split()[1]}"].__dict__[
                             arg.split()[2]
                     ] = arg.split()[3].strip('"')
+                    storage.save()
                 except KeyError:
                     print(error_logs["INSTANCE_NOT_FOUND"])
 
