@@ -87,3 +87,15 @@
 .description {
     min-height: 150px;
 }
+
+.max_guest {
+    width: 100px;
+}
+
+.number_bathrooms {
+    width: 100px;
+}
+
+.number_rooms {
+    width: 100px;
+}
