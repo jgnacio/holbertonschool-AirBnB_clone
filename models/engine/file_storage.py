@@ -32,6 +32,7 @@ Created on Thu Feb 23 10:33:00 2023.
 """
 
 import json
+from . import classes
 from models.user import User
 from models.city import City
 from models.place import Place
@@ -68,11 +69,6 @@ class FileStorage:
 
     def reload(self):
         """Reload the model from the path."""
-        classes = {"BaseModel": BaseModel, "User": User,
-                   "Amenity": Amenity, "City": City,
-                   "Place": Place, "Review": Review,
-                   "State": State}
-
         try:
             with open(
                 FileStorage.__file_path, 'r', encoding='utf-8'
